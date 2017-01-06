@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="infrared5.com.red5proandroid.activity.SubscribeActivity">
+
+    <FrameLayout
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        android:id="@+id/video_container" />
+    <!--<com.red5pro.streaming.view.R5VideoView-->
+        <!--android:id="@+id/video"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="100dp"-->
+        <!--/>-->
+
+    <fragment
+        android:id="@+id/control_bar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="0dp"
+        android:layout_alignParentBottom="true"
+        android:name="fragment.ControlBarFragment"
+        tools:layout="@layout/fragment_control_bar" />
+
+    <FrameLayout
+        android:id="@+id/settings_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"></FrameLayout>
+
+</RelativeLayout>

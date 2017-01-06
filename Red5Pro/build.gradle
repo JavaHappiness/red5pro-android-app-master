@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        applicationId "infrared5.com.red5proandroid"
+        minSdkVersion 16
+        targetSdkVersion 24
+        versionCode 1070
+        versionName "v2.4.0 SDK 1.4.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        staging {
+            minifyEnabled false
+            applicationVariants.all { variant ->
+                appendVersionNameVersionCode(variant, defaultConfig)
+            }
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+//    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+}
+
+def appendVersionNameVersionCode(variant, defaultConfig) {
+    variant.outputs.each { output ->
+
+        if (output.zipAlign) {
+            def file = output.outputFile
+            def fileName = file.name.replace(".apk", "-" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk")
+            output.outputFile = new File(file.parent, fileName)
+        }
+
+        def file = output.packageApplication.outputFile
+        def fileName = file.name.replace(".apk", "-" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk")
+        output.packageApplication.outputFile = new File(file.parent, fileName)
+
+    }
+}
